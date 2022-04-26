@@ -33,9 +33,15 @@ class Home extends CI_Controller {
 		$current_view=$this->model->blogCountFinder($id);
 		$view=$current_view+1;
 		$this->model->blogCountUpdater($id,$view);
+		$res=$this->model->finder('blog',$id);
+		$data['og_image']=base_url().$res[0]->image;
+		$data['og_title']=$res[0]->title;
+		$data['og_description']=$res[0]->description;
+		$data['og_url']=base_url('home/blog_info/'.$id);
 		$data['blog']=$this->model->finder('blog',$id);
+
 		$data['recent_blog']=$this->model->recentBlog();
-		$this->load->view('home/header');
+		$this->load->view('home/header',$data);
 		$this->load->view('home/blog_info',$data);
 		$this->load->view('home/footer');
 	}
