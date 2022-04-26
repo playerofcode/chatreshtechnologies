@@ -46,9 +46,9 @@
         <i class="icofont-phone"></i> <?php echo MOBNO;?>
       </div>
       <div class="social-links">
-        <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
-        <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
-        <a href="#" class="instagram"><i class="icofont-instagram"></i></a>
+        <a href="https://twitter.com/ChatreshT" class="twitter"><i class="icofont-twitter"></i></a>
+        <a href="https://www.facebook.com/chatreshtechnologies" class="facebook"><i class="icofont-facebook"></i></a>
+        <a href="https://www.instagram.com/chatreshtechnologies/" class="instagram"><i class="icofont-instagram"></i></a>
         <a href="#" class="skype"><i class="icofont-skype"></i></a>
         <a href="#" class="linkedin"><i class="icofont-linkedin"></i></i></a>
       </div>

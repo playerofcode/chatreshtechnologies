@@ -39,7 +39,6 @@ class Home extends CI_Controller {
 		$data['og_description']=$res[0]->description;
 		$data['og_url']=base_url('home/blog_info/'.$id);
 		$data['blog']=$this->model->finder('blog',$id);
-
 		$data['recent_blog']=$this->model->recentBlog();
 		$this->load->view('home/header',$data);
 		$this->load->view('home/blog_info',$data);
