@@ -50,7 +50,7 @@
         <a href="https://www.facebook.com/chatreshtechnologies" class="facebook"><i class="icofont-facebook"></i></a>
         <a href="https://www.instagram.com/chatreshtechnologies/" class="instagram"><i class="icofont-instagram"></i></a>
         <a href="#" class="skype"><i class="icofont-skype"></i></a>
-        <a href="#" class="linkedin"><i class="icofont-linkedin"></i></i></a>
+        <a href="https://www.linkedin.com/company/chatreshtechnologies/" class="linkedin"><i class="icofont-linkedin"></i></i></a>
       </div>
     </div>
   </section>

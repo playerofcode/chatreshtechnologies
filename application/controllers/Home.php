@@ -7,6 +7,7 @@ class Home extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('Home_model','model');
+		$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>'); 
 	}
 	public function index()
 	{
@@ -72,6 +73,11 @@ class Home extends CI_Controller {
 	}
 	public function enquiry()
 	{
+		$this->form_validation->set_rules('name', 'Name', 'trim|required');
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+		$this->form_validation->set_rules('subject', 'Subject', 'trim|required');
+		$this->form_validation->set_rules('message', 'Message', 'trim|required');
+		if($this->form_validation->run()):
 		$name=$this->input->post('name');
 		$email=$this->input->post('email');
 		$subject=$this->input->post('subject');
@@ -88,6 +94,9 @@ class Home extends CI_Controller {
 		else:
 		$this->session->set_flashdata('msg', "Something went wrong. Try again.");
 		return redirect(base_url().'contact-us');
+		endif;
+		else:
+			$this->contact();
 		endif;
 	}
 	public function privacy_policy()

@@ -59,19 +59,22 @@
 <style type="text/css">
   .text_1{
     animation: animate 2s forwards infinite;
-    animation-iteration-count: 1;
+    //animation-iteration-count: 1;
   }
    .text_2{
     animation: animate 2s forwards infinite;
-    animation-iteration-count: 1;
+    //animation-iteration-count: 1;
   }
   .text_3{
     animation: animate 2s forwards infinite;
-    animation-iteration-count: 1;
+    //animation-iteration-count: 1;
   }
   @keyframes animate{
     0%{
       margin-right: 200px;
+    },
+    50%{
+      margin-right: 100px;
     }
     100%{
       margin-right: 0;
