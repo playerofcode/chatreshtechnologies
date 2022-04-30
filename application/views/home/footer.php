@@ -100,7 +100,13 @@
 
   <!-- Template Main JS File -->
   <script src="<?php echo base_url('assets/home/')?>js/main.js"></script>
-  
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script>
+    var typed = new Typed('.typing', {
+  strings: ["Explore", "Innovate","Create"],
+  typeSpeed: 40
+  });
+  </script>
 </body>
 
 </html>

@@ -90,6 +90,7 @@
             <center>    <img src="<?php echo base_url('assets/home/img/home.gif');?>" style="height: 250px;">
               <h2 class="text-uppercase" style="font-weight:bold;"><span class="text_1">Explore </span><span class="text_2"> Innovate</span> <span class="text_3">Create</h2></center>
           </div>
+          
          <!--  <div class="col-lg-4">
 
             <div class="icon-box text-center">
@@ -147,7 +148,7 @@
         <div class="row">
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="icon-box">
-              <div class="icon"><i class="bx bxl-dribbble"></i></div>
+               <img src="<?php echo base_url('assets/home/img/services/sc.png');?>" style="height: 100px;width:100px;">
               <h4><a href="">Software Consulting</a></h4>
               <p>We provide complete Software Consulting Solution in your Budget.</p>
             </div>
@@ -155,7 +156,7 @@
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
             <div class="icon-box">
-              <div class="icon"><i class="bx bx-file"></i></div>
+               <img src="<?php echo base_url('assets/home/img/services/csd.png');?>" style="height: 100px;width:100px;">
               <h4><a href="">Custom Software Development
 </a></h4>
               <p>We provide complete Custom Software Development
@@ -165,7 +166,7 @@
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
             <div class="icon-box">
-              <div class="icon"><i class="bx bx-tachometer"></i></div>
+           <img src="<?php echo base_url('assets/home/img/services/sdo.png');?>" style="height: 100px;width:100px;">
               <h4><a href="">Software Development Outsourcing</a></h4>
               <p>We provide Software Development Outsourcing in your Budget.</p>
             </div>
@@ -173,7 +174,7 @@
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
             <div class="icon-box">
-              <div class="icon"><i class="bx bx-world"></i></div>
+              <img src="<?php echo base_url('assets/home/img/services/spd.png');?>" style="height: 100px;width:100px;">
               <h4><a href="">Software Product Development</a></h4>
               <p>We provide Software Product Development in your Budget.</p>
             </div>
@@ -181,7 +182,7 @@
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
             <div class="icon-box">
-              <div class="icon"><i class="bx bx-slideshow"></i></div>
+             <img src="<?php echo base_url('assets/home/img/services/tas.png');?>" style="height: 100px;width:100px;">
               <h4><a href="">Technologies Application services</a></h4>
               <p>We provide Technologies Application services in your Budget.</p>
             </div>
@@ -189,28 +190,28 @@
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
             <div class="icon-box">
-              <div class="icon"><i class="bx bx-arch"></i></div>
+             <img src="<?php echo base_url('assets/home/img/services/ta.png');?>" style="height: 100px;width:100px;">
               <h4><a href="">Technology advisory</a></h4>
               <p>We provide Technology advisory in your Budget.</p>
             </div>
           </div>
            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
             <div class="icon-box">
-              <div class="icon"><i class="bx bx-arch"></i></div>
+               <img src="<?php echo base_url('assets/home/img/services/dea.png');?>" style="height: 100px;width:100px;">
               <h4><a href="">Digital enterprise application</a></h4>
               <p>We provide Digital enterprise application in your Budget.</p>
             </div>
           </div>
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-arch"></i></div>
+             <div class="icon-box">
+             <img src="<?php echo base_url('assets/home/img/services/da.png');?>" style="height: 100px;width:100px;">
               <h4><a href="">Data analytics</a></h4>
               <p>We provide Data analytics in your Budget.</p>
             </div>
           </div>
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
             <div class="icon-box">
-              <div class="icon"><i class="bx bx-arch"></i></div>
+               <img src="<?php echo base_url('assets/home/img/services/isa.png');?>" style="height: 100px;width:100px;">
               <h4><a href="">Intelligent SOHO automation</a></h4>
               <p>We provide Intelligent SOHO automation in your Budget.</p>
             </div>
@@ -228,9 +229,9 @@
         <div class="section-title mb">
           <h2>Our Brands</h2>
          <!--  <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p> -->
-        <center>  <a href="<?php echo base_url('eschool21');?>"><img src="<?php echo base_url('assets/home/')?>img/brand/eschool21.png" alt="" style="height: 100px;margin:10px;box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);"></a>
-          <a href="<?php echo base_url('boxoutsolution');?>"><img src="<?php echo base_url('assets/home/')?>img/brand/ctech.png" alt="" style="height: 100px;margin:10px;box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);"></a>s
-          <img src="<?php echo base_url('assets/home/')?>img/brand/boxotsolution.jpeg" alt="" style="height: 100px;margin:10px;box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);"></center>
+        <center>  <a href="https://eschool21.com/"><img src="<?php echo base_url('assets/home/')?>img/brand/eschool.png" alt="" style="height: 100px;margin:10px;box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);"></a>
+          <a href="#"><img src="<?php echo base_url('assets/home/')?>img/brand/ctech.png" alt="" style="height: 100px;margin:10px;box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);"></a>
+          <a href="https://boxoutsolution.com/"><img src="<?php echo base_url('assets/home/')?>img/brand/boxotsolution.jpeg" alt="" style="height: 100px;margin:10px;box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);"></a></center>
           <br>
         </div>
        

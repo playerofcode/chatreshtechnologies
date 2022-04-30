@@ -14,7 +14,7 @@
     <meta property="og:image" content="<?php if(!empty($og_image)):echo $og_image;else:echo base_url('assets/home/img/logo.jpg');endif;?>">
      <meta property="og:site_name" content="Chatresh Technologies Pvt. Ltd.">
     <meta property="og:type" content="website"/>
-    <meta property="og:description" content="<?php if(!empty($og_description)):echo $og_description;else:echo "Chatresh Technologies Pvt. Ltd. is a technology consulting, system integration, managed business services, and digital transformation company. Our teams guide our clients throughout the whole digital transformation process and synchronize all stakeholders to bring their expectations to life. We match our tailor-made, coordinated expertise with a vibrant ecosystem of digital innovators to deliver the most sustainable outcomes. We go to great lengths for our customers and accelerate their digital transformation by enabling their Cloud, Mobility, Data Analytics, IoT, System Integration and Security journeys to address the dynamic requirements of a variety of industry verticals, predominantly Government & Public Sector, Large and Medium Businesses and many more.";endif;?>">
+    <meta property="og:description" content="<?php if(!empty($og_description)):echo word_limiter($og_description,15);else:echo "Chatresh Technologies Pvt. Ltd. is a technology consulting, system integration, managed business services, and digital transformation company. Our teams guide our clients throughout the whole digital transformation process and synchronize all stakeholders to bring their expectations to life. We match our tailor-made, coordinated expertise with a vibrant ecosystem of digital innovators to deliver the most sustainable outcomes. We go to great lengths for our customers and accelerate their digital transformation by enabling their Cloud, Mobility, Data Analytics, IoT, System Integration and Security journeys to address the dynamic requirements of a variety of industry verticals, predominantly Government & Public Sector, Large and Medium Businesses and many more.";endif;?>">
      
     <!-- Favicons -->
   <link href="<?php echo base_url('assets/home/')?>img/logo.jpg" rel="icon">
@@ -62,7 +62,7 @@
       <div class="logo mr-auto">
    <!--      <h1 class="text-light"><a href="<?php echo base_url();?>"><span>CTech</span></a></h1> -->
         <!-- Uncomment below if you prefer to use an image logo -->
-        <a href="<?php echo base_url();?>"><img src="<?php echo base_url('assets/home/')?>img/ctech_web.png" alt="" class="img-fluid" style="width:100%;max-height: 60px;"></a>
+        <a href="<?php echo base_url();?>"><img src="<?php echo base_url('assets/home/')?>img/chatresh_technologies.jpg" alt="" class="img-fluid" style="width:100%;max-height: 60px;"></a>
       </div>
 
       <nav class="nav-menu d-none d-lg-block">
