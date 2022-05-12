@@ -32,6 +32,21 @@
     buttons: [ 'copy', 'csv', 'excel' ]
 });
         });
+        $(".add_item_btn").click(function(e){
+            e.preventDefault();
+            $("#show_item").append(` <tr>
+                      <td><input type="text" name="product[]" class="form-control"></td>
+                      <td><input type="number" name="unit_price[]" class="form-control"></td>
+                      <td><input type="number" name="qty[]" class="form-control"></td>
+                      <td><input type="number" name="price[]" class="form-control"></td>
+                      <td><button class="btn btn-danger remove_item_btn">Remove</button></td>
+                    </tr>`)
+        });
+        $(document).on('click','.remove_item_btn',function(e){
+            let row_item =$(this).parent().parent();
+            $(row_item).remove();
+        });
+
     </script>
 
     <!-- END ROBUST JS-->

@@ -74,13 +74,20 @@
               <li><a href="<?php echo base_url('admin/team_list');?>" data-i18n="nav.page_layouts.1_column" class="menu-item">All Added Team</a>
             </ul>
           </li>
-          <li class="nav-item"><a href="#"><i class="icon-folder"></i><span data-i18n="nav.page_layouts.main" class="menu-title">Testimonial Mgmt</span></a>
+          <li class="nav-item"><a href="#"><i class="icon-folder"></i><span data-i18n="nav.page_layouts.main" class="menu-title">invoice Mgmt</span></a>
+            <ul class="menu-content">
+              <li><a href="<?php echo base_url('admin/invoice');?>" data-i18n="nav.page_layouts.1_column" class="menu-item">Add invoice</a>
+              </li> 
+              <li><a href="<?php echo base_url('admin/invoice_list');?>" data-i18n="nav.page_layouts.1_column" class="menu-item">All Added invoice</a>
+            </ul>
+          </li>
+        <!--   <li class="nav-item"><a href="#"><i class="icon-folder"></i><span data-i18n="nav.page_layouts.main" class="menu-title">Testimonial Mgmt</span></a>
             <ul class="menu-content">
               <li><a href="<?php echo base_url('admin/testimonial');?>" data-i18n="nav.page_layouts.1_column" class="menu-item">Add Testimonial</a>
               </li> 
               <li><a href="<?php echo base_url('admin/testimonial_list');?>" data-i18n="nav.page_layouts.1_column" class="menu-item">All Added Testimonial</a>
             </ul>
-          </li>
+          </li> -->
           <li class=" nav-item"><a href="<?php echo base_url('admin/enquiry');?>"><i class="icon-phone"></i><span data-i18n="nav.dash.main" class="menu-title">Enquiry</span></a></li>
           <li class=" nav-item"><a href="<?php echo base_url('admin/boxoutsolution_enquiry');?>"><i class="icon-phone"></i><span data-i18n="nav.dash.main" class="menu-title">Boxoutsolution Enquiry</span></a>
           </li>

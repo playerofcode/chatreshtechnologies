@@ -38,7 +38,11 @@
                   <li class="d-flex align-items-center"><i class="icofont-eye-open"></i> <a href="javascript:void(0);"><?php echo $blog[0]->view;?></a></li>
                 </ul>
               </div>
-
+              <style>
+                .entry-content p{
+                  text-align: justify!important;
+                }
+              </style>
               <div class="entry-content">
                 <p><?php echo $blog[0]->description;?>
                 </p>

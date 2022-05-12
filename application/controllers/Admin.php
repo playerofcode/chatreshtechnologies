@@ -1331,7 +1331,187 @@ $result = file_get_contents($url, false, $options);
 		$this->load->view('admin/boxout',$data);
 		$this->load->view('admin/footer');
 	}
-	
+	//11 May, 2022
+	public function invoice()
+	{
+		$this->load->view('admin/header');
+	 	$this->load->view('admin/sidebar');
+		$this->load->view('admin/invoice');
+		$this->load->view('admin/footer');
+	}
+	public function addInvoice()
+	{
+
+		$name=$this->input->post('name');
+		$mobno=$this->input->post('mobno');
+		$email=$this->input->post('email');
+		$address=$this->input->post('address');
+
+		$product=$this->input->post('product');
+		$unit_price=$this->input->post('unit_price');
+		$qty=$this->input->post('qty');
+		$price=$this->input->post('price');
+		$total_price=0;
+		foreach($product as $key => $value):
+			$total_price+=$price[$key];
+		endforeach;
+		$invoice=array(
+			'name'=>$name,
+			'mobno'=>$mobno,
+			'email'=>$email,
+			'address'=>$address,
+			'total_price'=>$total_price
+		);
+		if($id=$this->model->addInvoice($invoice)):
+			$invoice_items=array();
+			foreach($product as $key => $value):
+			$invoice_items[]=array(
+				'invoice_id'=>$id,
+				'product'=>$value,
+				'unit_price'=>$unit_price[$key],
+				'qty'=>$qty[$key],
+				'price'=>$price[$key],
+			);
+		endforeach;
+		if($this->model->addInvoiceItem($invoice_items)):
+			$this->session->set_flashdata('msg', "Invoice Created Successfully."); 
+			redirect(base_url().'admin/invoice');
+		else:
+			$this->session->set_flashdata('msg', "Something went wrong"); 
+			redirect(base_url().'admin/invoice');
+		endif;
+		else:
+			$this->session->set_flashdata('msg', "Something went wrong.Try again!"); 
+				 redirect(base_url().'admin/invoice');
+		endif;
+	}
+	public function invoice_list()
+	{
+		$data['invoice_list']=$this->model->invoiceList();
+		$this->load->view('admin/header');
+	 	$this->load->view('admin/sidebar');
+		$this->load->view('admin/invoice_list',$data);
+		$this->load->view('admin/footer');
+	}
+	public function invoice_preview($id)
+	{
+		$this->load->library('pdf');
+		$invoice=$this->model->invoiceList($id);
+		$invoice_item=$this->model->invoiceItemList($id);
+		$invoice_item_set="";	
+		foreach($invoice_item as $key):
+		$invoice_item_set.="<tr align='center'>";
+		$invoice_item_set.="<td>".$key->product."</td>";
+		$invoice_item_set.="<td>".$key->unit_price."</td>";
+		$invoice_item_set.="<td>".$key->qty."</td>";
+		$invoice_item_set.="<td>".$key->price."</td>";
+		$invoice_item_set.="</tr>";
+		endforeach;
+		
+		$html_content='
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Invoice</title>
+		<style>
+		.container{
+			height:100px;
+			width:100%;
+			//background:red;
+		}
+		.first_left{
+		height:100px;
+		width:30%;
+		float:left;
+		text-align:center;
+		line-height:50px;
+		}
+		.first_right{
+			height:100px;
+			width:70%;
+			float:right;
+			//background:orange;
+			text-align:center;
+		}
+		.first_right h1{
+			margin:0;
+		}
+		.first_right p{
+		margin:0;
+		padding:0;
+		}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="first_left">
+				<h1>INVOICE</h1>
+			</div>
+			<div class="first_right">
+				<h1>Chatresh Technologies Pvt Ltd</h1>
+			<p>C3/99 Vibhuti Khand, Gomti Nagar, Lucknow</p>
+			<p>Mobile No : +91 962-881-1111,  Email : info@chatresh.com</p>	
+			</div>
+		</div>
+		<h1>Recipient</h1>
+		<table width="100%" >
+			<tr>
+				<td>'.$invoice[0]->name.'</td>
+				<td><b>Invoice #</b> '.$invoice[0]->id.'</td>
+			</tr>
+			<tr>
+				<td>'.$invoice[0]->address.'</td>
+				<td><b>Date </b>'.date('d M, Y',strtotime($invoice[0]->created_at)).'</td>
+			</tr>
+			<tr>
+				<td colspan="2">'.$invoice[0]->email.'</td>
+			</tr>
+			<tr>
+				<td colspan="2">'.$invoice[0]->mobno.'</td>
+			</tr>
+
+		</table>
+		<hr>
+		<table width="100%" border="1" cellspacing="0" cellpadding="5">
+			<tr>
+				<th>Product</th>
+				<th>Unit Price</th>
+				<th>Quantity</th>
+				<th>Price</th>
+			</tr>
+			<tr>
+			'.$invoice_item_set.'
+			<th colspan="2">&nbsp;</th>
+				<th>Total Price</th>
+				<th>'.$invoice[0]->total_price.'</th>
+			</tr>
+			
+		</table>
+	</body>
+</html>';
+			//$html_content.=$this->model->orderItem($order_id);
+			$this->pdf->loadHtml($html_content);
+			$this->pdf->render();
+			$this->pdf->stream("CT_invoice",array("Attachment"=>0));
+		
+
+	}
+	public function deleteInvoice($id)
+	{
+		if($this->model->deleteInvoiceItem($id)):
+			if($this->model->deleteInvoice($id)):
+			$this->session->set_flashdata('msg', "invoice Deleted successfully."); 
+			 redirect(base_url().'admin/invoice_list');
+			else:
+			$this->session->set_flashdata('msg', "Something went wrong.Try again!"); 
+			 redirect(base_url().'admin/invoice_list');
+			endif;
+		else:
+			$this->session->set_flashdata('msg', "Something went wrong.Try again!"); 
+				 redirect(base_url().'admin/invoice_list');
+		endif;
+
+	}
 }
 
 

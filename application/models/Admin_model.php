@@ -421,6 +421,41 @@ class Admin_model extends CI_model
 	 	$this->db->where('id',$id);
 	 	return $this->db->update('team',$data);
 	 }
+	 //11 May, 2022
+	 public function addInvoice($invoice)
+	 {
+	 	$res=$this->db->insert('invoice',$invoice);
+	 	if($res):
+	 		return $this->db->insert_id();
+	 	else:
+	 		return false;
+	 	endif;
+	 }
+	 public  function addInvoiceItem($invoice_items)
+	 {
+	 	return $this->db->insert_batch('invoice_item', $invoice_items); 
+	 }
+	 public function invoiceList($id='')
+	 {
+	 	if($id):
+	 		return $this->db->get_where('invoice',array('id'=>$id))->result();
+	 	else:
+	 	$this->db->order_by('id','desc');
+	 	return $this->db->get('invoice')->result();
+	 	endif;
+	 }
+	 public function invoiceItemList($id)
+	 {
+	 	return $this->db->get_where('invoice_item',array('invoice_id'=>$id))->result();
+	 }
+	 public function deleteInvoiceItem($id)
+	 {
+	 	return $this->db->delete('invoice_item',array('invoice_id'=>$id));
+	 }
+	 public function deleteInvoice($id)
+	 {
+	 	return $this->db->delete('invoice',array('id'=>$id));
+	 }
 }
 
 ?>
