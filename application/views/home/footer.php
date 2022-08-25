@@ -63,7 +63,7 @@
             <h3>About CTech</h3>
             <p>Chatresh Technologies Pvt. Ltd. is a technology consulting, system integration, managed business services, and digital transformation company. </p>
             <div class="social-links mt-3">
-              <a href="https://twitter.com/ChatreshT" class="twitter"><i class="bx bxl-twitter"></i></a>
+              <a href="https://twitter.com/chatreshtech" class="twitter"><i class="bx bxl-twitter"></i></a>
               <a href="https://www.facebook.com/chatreshtechnologies" class="facebook"><i class="bx bxl-facebook"></i></a>
               <a href="https://www.instagram.com/chatreshtechnologies/" class="instagram"><i class="bx bxl-instagram"></i></a>
              <!--  <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a> -->
@@ -101,12 +101,98 @@
   <!-- Template Main JS File -->
   <script src="<?php echo base_url('assets/home/')?>js/main.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=625d1f7185d62e001964c3c2&product=sop' async='async'></script>
+<!-- GetButton.io widget -->
+<script type="text/javascript">
+    (function () {
+        var options = {
+            whatsapp: "+919839098260", // WhatsApp number
+            call_to_action: "Message us", // Call to action
+            button_color: "#FF6550", // Color of button
+            position: "right", // Position may be 'right' or 'left'
+        };
+        var proto = document.location.protocol, host = "getbutton.io", url = proto + "//static." + host;
+        var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
+        s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
+        var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+    })();
+</script>
+<!-- /GetButton.io widget -->
   <script>
     var typed = new Typed('.typing', {
   strings: ["Explore", "Innovate","Create"],
   typeSpeed: 40
   });
   </script>
+  <script type="text/javascript">
+    $(window).on('load', function() {
+        $('#exampleModal').modal('show');
+    });
+</script>
+<script>
+  $(document).ready(function(){
+  $(".owl-carousel").owlCarousel({
+    loop:true,
+    margin:10,
+    center: true,
+    nav:false,
+    autoplay: true,
+    responsive:{
+       0: {
+        items: 1
+      },
+      768: {
+        items: 2
+      },
+      1170: {
+        items: 3
+      }
+    }
+  });
+});
+</script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script>
+      var swiper = new Swiper(".mySwiper", {
+        effect: "cube",
+         autoplay: {
+          delay: 1000,
+          disableOnInteraction: false,
+        },
+        grabCursor: true,
+        cubeEffect: {
+          shadow: true,
+          slideShadows: true,
+          shadowOffset: 20,
+          shadowScale: 0.94,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+        },
+      });
+    </script>
+     <script>
+      var swiper = new Swiper(".mySwiper1", {
+        effect: "coverflow",
+         autoplay: {
+          delay: 1000,
+          disableOnInteraction: false,
+        },
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: "auto",
+        coverflowEffect: {
+          rotate: 50,
+          stretch: 0,
+          depth: 100,
+          modifier: 1,
+          slideShadows: true,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+        },
+      });
+    </script>
 </body>
 
 </html>

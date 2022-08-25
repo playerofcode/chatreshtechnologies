@@ -617,17 +617,19 @@ $result = file_get_contents($url, false, $options);
 	}
 	public function addBlog()
 	{
-		$this->form_validation->set_rules('title', 'Title', 'trim|required|min_length[5]');
+		$this->form_validation->set_rules('title', 'Title', 'trim|required|min_length[5]|is_unique[blog.title]');
 		$this->form_validation->set_rules('description', 'Description', 'required');
 		 if ($this->form_validation->run() && $this->upload->do_upload('image')):
 		 	$title=$this->input->post('title');
 			$description=$this->input->post('description');
 			$image=$this->upload->data();
 			$image_path="upload/".$image['raw_name'].$image['file_ext'];
+			$url_slug = url_title(strtolower($title));
 			$data=array(
 					 'title'=>$title,
 					 'description'=>$description,
-					 'image'=>$image_path
+					 'image'=>$image_path,
+					 'url_slug'=>$url_slug
 					 );
 			if($this->model->addBlog($data)):
 				 $this->session->set_flashdata('msg', "Blog Posted Successfully."); 
@@ -1341,26 +1343,30 @@ $result = file_get_contents($url, false, $options);
 	}
 	public function addInvoice()
 	{
-
 		$name=$this->input->post('name');
 		$mobno=$this->input->post('mobno');
 		$email=$this->input->post('email');
 		$address=$this->input->post('address');
-
 		$product=$this->input->post('product');
 		$unit_price=$this->input->post('unit_price');
 		$qty=$this->input->post('qty');
 		$price=$this->input->post('price');
+		$gst=$this->input->post('gst');
 		$total_price=0;
 		foreach($product as $key => $value):
 			$total_price+=$price[$key];
 		endforeach;
+		$gst_price=round(($total_price*$gst)/100);
+		$gst_included_price=$total_price+$gst_price;
 		$invoice=array(
 			'name'=>$name,
 			'mobno'=>$mobno,
 			'email'=>$email,
 			'address'=>$address,
-			'total_price'=>$total_price
+			'total_price'=>$total_price,
+			'gst'=>$gst,
+			'gst_amount'=>$gst_price,
+			'gst_inc_price'=>$gst_included_price
 		);
 		if($id=$this->model->addInvoice($invoice)):
 			$invoice_items=array();
@@ -1482,19 +1488,26 @@ $result = file_get_contents($url, false, $options);
 			<tr>
 			'.$invoice_item_set.'
 			<th colspan="2">&nbsp;</th>
-				<th>Total Price</th>
+				<th>Sub Total</th>
 				<th>'.$invoice[0]->total_price.'</th>
+			</tr>
+			<tr>
+			<th colspan="2">&nbsp;</th>
+				<th>GST ('.$invoice[0]->gst.'%)</th>
+				<th>'.$invoice[0]->gst_amount.'</th>
+			</tr>
+			<tr>
+			<th colspan="2">&nbsp;</th>
+				<th>Total</th>
+				<th>'.$invoice[0]->gst_inc_price.'</th>
 			</tr>
 			
 		</table>
 	</body>
 </html>';
-			//$html_content.=$this->model->orderItem($order_id);
 			$this->pdf->loadHtml($html_content);
 			$this->pdf->render();
 			$this->pdf->stream("CT_invoice",array("Attachment"=>0));
-		
-
 	}
 	public function deleteInvoice($id)
 	{
@@ -1510,18 +1523,345 @@ $result = file_get_contents($url, false, $options);
 			$this->session->set_flashdata('msg', "Something went wrong.Try again!"); 
 				 redirect(base_url().'admin/invoice_list');
 		endif;
-
+	}
+	//13 May, 2022
+	public function job()
+	{
+		$this->load->view('admin/header');
+	 	$this->load->view('admin/sidebar');
+		$this->load->view('admin/job');
+		$this->load->view('admin/footer');
+	}
+	public function postJob()
+	{
+		$this->form_validation->set_rules('job_profile', 'Job Profile', 'trim|required');
+		$this->form_validation->set_rules('job_type', 'Job Type', 'trim|required');
+		$this->form_validation->set_rules('salary', 'Salary', 'trim|required');
+		$this->form_validation->set_rules('location', 'Location', 'trim|required');
+		$this->form_validation->set_rules('job_description', 'Job Description', 'trim|required');
+		if($this->form_validation->run()):
+			$job_profile=$this->input->post('job_profile');
+			$job_type=$this->input->post('job_type');
+			$salary=$this->input->post('salary');
+			$location=$this->input->post('location');
+			$job_description=$this->input->post('job_description');
+			$data=array(
+				'job_profile'=>$job_profile,
+				'job_type'=>$job_type,
+				'salary'=>$salary,
+				'location'=>$location,
+				'job_description'=>$job_description
+			);
+			if($this->model->postJob($data)):
+			$this->session->set_flashdata('msg', "Job posted successfully."); 
+			 redirect(base_url().'admin/job');
+			else:
+			$this->session->set_flashdata('msg', "Something went wrong.Try again!"); 
+			 redirect(base_url().'admin/job');
+			endif;
+		else:
+			$this->job();
+		endif;
+	}
+	public function job_list()
+	{
+		$data['job_list']=$this->model->jobList();
+		$this->load->view('admin/header');
+	 	$this->load->view('admin/sidebar');
+		$this->load->view('admin/job_list',$data);
+		$this->load->view('admin/footer');
+	}
+	public function deleteJob($id)
+	{
+		if($this->model->deleteJob($id)):
+		$this->session->set_flashdata('msg', "Job deleted successfully."); 
+		 redirect(base_url().'admin/job_list');
+		else:
+		$this->session->set_flashdata('msg', "Something went wrong.Try again!"); 
+		 redirect(base_url().'admin/job_list');
+		endif;
+	}
+	//30 May, 2022
+	public function quotation()
+	{
+		$this->check_login();
+		$this->load->view('admin/header');
+	 	$this->load->view('admin/sidebar');
+		$this->load->view('admin/quotation');
+		$this->load->view('admin/footer');
+	}
+	public function addQuotation()
+	{
+		$name=$this->input->post('name');
+		$mobno=$this->input->post('mobno');
+		$email=$this->input->post('email');
+		$address=$this->input->post('address');
+		$product=$this->input->post('product');
+		$unit_price=$this->input->post('unit_price');
+		$qty=$this->input->post('qty');
+		$price=$this->input->post('price');
+		$gst=$this->input->post('gst');
+		$total_price=0;
+		foreach($product as $key => $value):
+			$total_price+=$price[$key];
+		endforeach;
+		$gst_price=round(($total_price*$gst)/100);
+		$gst_included_price=$total_price+$gst_price;
+		$quotation=array(
+			'name'=>$name,
+			'mobno'=>$mobno,
+			'email'=>$email,
+			'address'=>$address,
+			'total_price'=>$total_price,
+			'gst'=>$gst,
+			'gst_amount'=>$gst_price,
+			'gst_inc_price'=>$gst_included_price
+		);
+		if($id=$this->model->addQuotation($quotation)):
+			$quotation_items=array();
+			foreach($product as $key => $value):
+			$quotation_items[]=array(
+				'invoice_id'=>$id,
+				'product'=>$value,
+				'unit_price'=>$unit_price[$key],
+				'qty'=>$qty[$key],
+				'price'=>$price[$key],
+			);
+		endforeach;
+		if($this->model->addQuotationItem($quotation_items)):
+			$this->session->set_flashdata('msg', "Quotation Created Successfully."); 
+			redirect(base_url().'admin/quotation');
+		else:
+			$this->session->set_flashdata('msg', "Something went wrong"); 
+			redirect(base_url().'admin/quotation');
+		endif;
+		else:
+			$this->session->set_flashdata('msg', "Something went wrong.Try again!"); 
+				 redirect(base_url().'admin/quotation');
+		endif;
+	}
+	public function quotation_list()
+	{
+		$data['quotation_list']=$this->model->quotationList();
+		$this->load->view('admin/header');
+	 	$this->load->view('admin/sidebar');
+		$this->load->view('admin/quotation_list',$data);
+		$this->load->view('admin/footer');
+	}
+	public function deleteQuotation($id)
+	{
+		if($this->model->deleteQuotationItem($id)):
+			if($this->model->deleteQuotation($id)):
+			$this->session->set_flashdata('msg', "Quotation Deleted successfully."); 
+			 redirect(base_url().'admin/quotation_list');
+			else:
+			$this->session->set_flashdata('msg', "Something went wrong.Try again!"); 
+			 redirect(base_url().'admin/quotation_list');
+			endif;
+		else:
+			$this->session->set_flashdata('msg', "Something went wrong.Try again!"); 
+				 redirect(base_url().'admin/quotation_list');
+		endif;
+	}
+	public function quotation_preview($id)
+	{
+		$this->load->library('pdf');
+		$invoice=$this->model->quotationList($id);
+		$invoice_item=$this->model->quotationItemList($id);
+		$invoice_item_set="";	
+		$i=1;
+		foreach($invoice_item as $key):
+		$invoice_item_set.="<tr align='center'>";
+		$invoice_item_set.="<td>".$i."</td>";
+		$invoice_item_set.="<td>".$key->product."</td>";
+		$invoice_item_set.="<td>".$key->unit_price."</td>";
+		$invoice_item_set.="<td>".$key->qty."</td>";
+		$invoice_item_set.="<td>".$key->price."</td>";
+		$invoice_item_set.="</tr>";
+		$i++;endforeach;
+		
+		$html_content='
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>QUATATION</title>
+		<style>
+		.container{
+			height:100px;
+			width:100%;
+			//background:red;
+		}
+		.first_left{
+		height:100px;
+		width:30%;
+		float:left;
+		text-align:center;
+		line-height:50px;
+		}
+		.first_right{
+			height:100px;
+			width:70%;
+			float:right;
+			//background:orange;
+			text-align:center;
+		}
+		.first_right h1{
+			margin:0;
+		}
+		.first_right p{
+		margin:0;
+		padding:0;
+		}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="first_left">
+				<h1 style="color:#0b64a2;">PRODUCT QUATATION</h1>
+			</div>
+			<div class="first_right">
+				<h1 style="color:#0b64a2;">Chatresh Technologies Pvt Ltd</h1>
+			<p>C3/99 Vibhuti Khand, Gomti Nagar, Lucknow</p>
+			<p>Mobile No : +91 962-881-1111,  Email : info@chatresh.com</p>
+			<p>GST No : 09AAKCC1839J1ZC </p>	
+			</div>
+		</div>
+		<h1 style="color:skyblue;">CLIENT DETAILS</h1>
+		<table width="100%" >
+			<tr>
+				<td>'.$invoice[0]->name.'</td>
+				<td><b>Quatation Number #</b> '.$invoice[0]->id.'</td>
+			</tr>
+			<tr>
+				<td>'.$invoice[0]->address.'</td>
+				<td><b>Date </b>'.date('d M, Y',strtotime($invoice[0]->created_at)).'</td>
+			</tr>
+			<tr>
+				<td colspan="2">'.$invoice[0]->email.'</td>
+			</tr>
+			<tr>
+				<td colspan="2">'.$invoice[0]->mobno.'</td>
+			</tr>
+		</table>
+		<hr>
+		<table width="100%" border="1" cellspacing="0" cellpadding="5">
+			<tr style="background:#0b64a2;color:#fff;">
+				<th>S.No.</th>
+				<th>Product</th>
+				<th>Unit Price</th>
+				<th>Quantity</th>
+				<th>Price</th>
+			</tr>
+			<tr>
+			'.$invoice_item_set.'
+			<th colspan="3">&nbsp;</th>
+				<th style="background:#0b64a2;color:#fff;">Sub Total</th>
+				<th>'.$invoice[0]->total_price.'</th>
+			</tr>
+			<tr>
+			<th colspan="3">&nbsp;</th>
+				<th style="background:#0b64a2;color:#fff;">GST ('.$invoice[0]->gst.'%)</th>
+				<th>'.$invoice[0]->gst_amount.'</th>
+			</tr>
+			<th colspan="3">&nbsp;</th>
+				<th style="background:#0b64a2;color:#fff;">Total</th>
+				<th>'.$invoice[0]->gst_inc_price.'</th>
+			</tr>
+			
+		</table>
+		<h1>Terms & Conditions</h1>
+		<ol>
+		<li>QUOTATIONS  &  ESTIMATES
+		<ul style="font-size:15px;">
+			<li>All quotations provided by Chatresh Technologies Pvt Ltd are valid for a period of 30 days from date of issue. Quotations not accepted within this timeframe must be re-issued.</li>
+			<li>All quotations are required to be accepted using the supplied Quotation Acceptance Form and returned to Chatresh Technologies Pvt Ltd within the 30 day period from date of issuance.</li>
+			<li>All quoted prices, excluding where indicated, do not include Goods and Services Tax.</li>
+			<li>All estimates will need to be formalized to a quotation or invoice before acceptance by either party as the final cost of the application.</li>
+			<li>Chatresh Technologies Pvt Ltd reserves the right to suspend the services/quotation at any time, without any prior information.</li>
+		</ul>
+		</li>
+		<li>PAYMENT TERMS
+		<ul style="font-size:15px;">	
+		<li>All quotations provided by Chatresh Technologies Pvt Ltd, require a 50% deposit upon acceptance.</li>
+		<li>Unless prior arrangement has been made, final payment is strictly net 10 days from the date of completion.</li>
+		<li>Any cost arising from payment clearings or transaction charges are solely the responsibility of the client and will be charged as such.</li>
+		<li>Chatresh Technologies Pvt Ltd will only commence work on the quoted application once any deposited funds have cleared.</li>
+		<li>The customer will not be entitled for any service in case of delay in payment for more than 10 days from the final date of installation / date of project / module completion.</li>
+		<li>If opted for service beyond the 12 months of maintenance period or as agreed by Chatresh Technologies Pvt Ltd, The Annual Maintenance Charges (AMC) will be normally applicable 40% (PERCENT) of original development cost of Project / Module; each year the development cost for new modules will be added to the initial development cost for the calculation of the AMC.</li>
+		<li>The AMC percentage shall be decided by the Chatresh Technologies Pvt Ltd; which depends upon the amount of efforts and work required. This % may vary each year.</li>
+		</ul>
+		</li>
+		</ol>
+		<h1>Bank Details</h1>
+		<table width="100%">
+		<tr>
+			<td>Bank Name</td>
+			<td>Bandhan Bank</td>
+		</tr>
+		<tr>
+			<td>Account Holder Name</td>
+			<td>CHATRESH TECHNOLOGIES PVT LTD</td>
+		</tr>
+		<tr>
+			<td>Account Number</td>
+			<td>10220004253857</td>
+		</tr>
+		<tr>
+			<td>IFSC Code</td>
+			<td>BDBL0001908</td>
+		</tr>
+		</table>
+	</body>
+</html>';
+			$this->pdf->loadHtml($html_content);
+			$this->pdf->render();
+			$this->pdf->stream("Quotation",array("Attachment"=>0));
+	}
+	//02 June, 2022
+	public function creative()
+	{
+		$data['creative']=$this->model->creative();
+		$this->load->view('admin/header');
+	 	$this->load->view('admin/sidebar');
+		$this->load->view('admin/creative',$data);
+		$this->load->view('admin/footer');
+	}
+	public function addCreative()
+	{
+		 if ($this->upload->do_upload('image')):
+			$image=$this->upload->data();
+			$image_path="upload/".$image['raw_name'].$image['file_ext'];
+			$data=array(
+					 'image'=>$image_path
+					 );
+			if($this->model->addCreative($data)):
+				 $this->session->set_flashdata('msg', "Team added Successfully."); 
+   				 redirect(base_url().'admin/creative');
+			else:
+				$this->session->set_flashdata('msg', "Something went wrong.Try again!"); 
+   				 redirect(base_url().'admin/creative');
+			endif;
+		 else:
+		 	$data['upload_error']=$this->upload->display_errors('<p class="text-danger">', '</p>');
+		 	$this->load->view('admin/header');
+		 	$this->load->view('admin/sidebar');
+			$this->load->view('admin/creative',$data);
+			$this->load->view('admin/footer');
+		 endif;
+	}
+	public function deleteCreative($id)
+	{
+		$data=$this->model->creative($id);
+		echo $image=$data[0]->image;
+		if(file_exists($image)):
+			unlink($image);
+		endif;
+		if($this->model->deleteCreative($id)):
+			 $this->session->set_flashdata('msg', "Creative deleted Successfully."); 
+				 redirect(base_url().'admin/creative');
+		else:
+			$this->session->set_flashdata('msg', "Something went wrong.Try again!"); 
+				 redirect(base_url().'admin/creative');
+		endif;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-

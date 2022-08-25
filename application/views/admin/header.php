@@ -55,7 +55,7 @@
                  <!--  <a href="#" class="dropdown-item"><i class="icon-head"></i>Profile</a> -->
                  <!--  <a href="#" class="dropdown-item"><i class="icon-mail6"></i> My Inbox</a> -->
                  <!--  <a href="#" class="dropdown-item"><i class="icon-clipboard2"></i> Task</a> -->
-                  <a href="<?php echo base_url('admin/api');?>" class="dropdown-item"><i class="icon-android-settings"></i> API Configuration</a>
+                  <!-- <a href="<?php echo base_url('admin/api');?>" class="dropdown-item"><i class="icon-android-settings"></i> API Configuration</a> -->
                   <a href="<?php echo base_url('admin/change_password');?>" class="dropdown-item"><i class="icon-android-settings"></i> Change Password</a>
                   <div class="dropdown-divider"></div><a href="<?php echo base_url('admin/logout');?>" class="dropdown-item"><i class="icon-power3"></i> Logout</a>
                 </div>

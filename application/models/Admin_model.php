@@ -456,6 +456,85 @@ class Admin_model extends CI_model
 	 {
 	 	return $this->db->delete('invoice',array('id'=>$id));
 	 }
+	 //13 may, 2022
+	 public function postJob($data)
+	 {
+	 	return $this->db->insert('career',$data);
+	 }
+	 public function jobList($id='')
+	 {
+	 	if($id):
+	 		return $this->db->get_where('career',array('id'=>$id))->result();
+	 	else:
+	 		$this->db->order_by('id','desc');
+	 		return $this->db->get('career')->result();
+	 	endif;
+	 }
+	 public function deleteJob($id)
+	 {
+	 	return $this->db->delete('career',array('id'=>$id));
+	 }
+	 //30 may, 2022
+	 public function addQuotation($quotation)
+	 {
+	 	$res=$this->db->insert('quotation',$quotation);
+	 	if($res):
+	 		return $this->db->insert_id();
+	 	else:
+	 		return false;
+	 	endif;
+	 }
+	 public function addQuotationItem($quotation_items)
+	 {
+	 	return $this->db->insert_batch('quotation_item', $quotation_items); 
+	 }
+	 public function quotationList($id='')
+	 {
+	 	if($id):
+	 		return $this->db->get_where('quotation',array('id'=>$id))->result();
+	 	else:
+	 	$this->db->order_by('id','desc');
+	 	return $this->db->get('quotation')->result();
+	 	endif;
+	 }
+	 public function deleteQuotationItem($id)
+	 {
+	 	return $this->db->delete('quotation_item',array('invoice_id'=>$id));
+	 }
+	 public function deleteQuotation($id)
+	 {
+	 	return $this->db->delete('quotation',array('id'=>$id));
+	 }
+	 public function quotationItemList($id)
+	 {
+	 	return $this->db->get_where('quotation_item',array('invoice_id'=>$id))->result();
+	 }
+	 public function creative($id='')
+	 {
+	 	if($id):
+	 		return $this->db->get_where('creative',array('id'=>$id))->result();
+	 	else:
+	 		$this->db->order_by('id','desc');
+	 		return $this->db->get('creative')->result();
+	 	endif;
+	 }
+	 public function addCreative($data)
+	 {
+	 	return $this->db->insert('creative',$data);
+	 }
+	 public function deleteCreative($id)
+	 {
+	 	return $this->db->delete('creative',array('id'=>$id));
+	 }
+	 public function isAlreadyUrlSlug($url_slug)
+	 {
+	 	$res=$this->db->get_where('blog',array('url_slug'=>$url_slug))->num_rows();
+	 	if($res>0):
+	 		return false;
+	 	else:
+	 		return true;
+	 	endif;
+	 }
 }
 
 ?>

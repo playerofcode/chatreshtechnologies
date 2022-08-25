@@ -81,6 +81,20 @@
               <li><a href="<?php echo base_url('admin/invoice_list');?>" data-i18n="nav.page_layouts.1_column" class="menu-item">All Added invoice</a>
             </ul>
           </li>
+          <li class="nav-item"><a href="#"><i class="icon-folder"></i><span data-i18n="nav.page_layouts.main" class="menu-title">Quotation Mgmt</span></a>
+            <ul class="menu-content">
+              <li><a href="<?php echo base_url('admin/quotation');?>" data-i18n="nav.page_layouts.1_column" class="menu-item">Add Quotation</a>
+              </li> 
+              <li><a href="<?php echo base_url('admin/quotation_list');?>" data-i18n="nav.page_layouts.1_column" class="menu-item">All Added Quotation</a>
+            </ul>
+          </li>
+            <li class="nav-item"><a href="#"><i class="icon-folder"></i><span data-i18n="nav.page_layouts.main" class="menu-title">Career Mgmt</span></a>
+            <ul class="menu-content">
+              <li><a href="<?php echo base_url('admin/job');?>" data-i18n="nav.page_layouts.1_column" class="menu-item">Post Job</a>
+              </li> 
+              <li><a href="<?php echo base_url('admin/job_list');?>" data-i18n="nav.page_layouts.1_column" class="menu-item">All Posted Job</a>
+            </ul>
+          </li>
         <!--   <li class="nav-item"><a href="#"><i class="icon-folder"></i><span data-i18n="nav.page_layouts.main" class="menu-title">Testimonial Mgmt</span></a>
             <ul class="menu-content">
               <li><a href="<?php echo base_url('admin/testimonial');?>" data-i18n="nav.page_layouts.1_column" class="menu-item">Add Testimonial</a>
@@ -89,6 +103,7 @@
             </ul>
           </li> -->
           <li class=" nav-item"><a href="<?php echo base_url('admin/enquiry');?>"><i class="icon-phone"></i><span data-i18n="nav.dash.main" class="menu-title">Enquiry</span></a></li>
+          <li class=" nav-item"><a href="<?php echo base_url('admin/creative');?>"><i class="icon-phone"></i><span data-i18n="nav.dash.main" class="menu-title">Creative</span></a></li>
           <li class=" nav-item"><a href="<?php echo base_url('admin/boxoutsolution_enquiry');?>"><i class="icon-phone"></i><span data-i18n="nav.dash.main" class="menu-title">Boxoutsolution Enquiry</span></a>
           </li>
         </ul>

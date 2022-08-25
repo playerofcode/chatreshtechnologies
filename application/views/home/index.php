@@ -1,4 +1,23 @@
-
+ <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+         <!--  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+          <button type="button" class="close btn-sm" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">CLOSE &times;</span>
+          </button>
+        </div>
+        <div class="modal-body p-0">
+          <img src="<?php echo base_url('assets/home/img/ctech5.jpg');?>" class="img-fluid">
+        </div>
+       <!--  <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div> -->
+      </div>
+    </div>
+  </div>
   <!-- ======= Hero Section ======= -->
   <section id="hero">
     <div class="hero-container">
@@ -56,202 +75,111 @@
       </div>
     </div>
   </section><!-- End Hero -->
-<style type="text/css">
-  .text_1{
-    animation: animate 2s forwards infinite;
-    //animation-iteration-count: 1;
-  }
-   .text_2{
-    animation: animate 2s forwards infinite;
-    //animation-iteration-count: 1;
-  }
-  .text_3{
-    animation: animate 2s forwards infinite;
-    //animation-iteration-count: 1;
-  }
-  @keyframes animate{
-    0%{
-      margin-right: 200px;
-    },
-    50%{
-      margin-right: 100px;
-    }
-    100%{
-      margin-right: 0;
-      color: blue;
-    }
-  }
-</style>
   <main id="main">
-
-    <!-- ======= Featured Section ======= -->
-    <section id="featured" class="featured">
-      <div class="container">
-
-        <div class="row">
-          <div class="col-md-12">
-            <center>    <img src="<?php echo base_url('assets/home/img/home.gif');?>" style="height: 250px;">
-              <h2 class="text-uppercase" style="font-weight:bold;"><span class="text_1">Explore </span><span class="text_2"> Innovate</span> <span class="text_3">Create</h2></center>
-          </div>
-          
-         <!--  <div class="col-lg-4">
-
-            <div class="icon-box text-center">
-              <i class="icofont-computer"></i>
-              <h3><a href="javascript:void(0);">Explore</a></h3>
-          
-            </div>
-          </div> -->
-          <!-- <div class="col-lg-4 mt-4 mt-lg-0">
-            <div class="icon-box text-center">
-               <i class="icofont-computer"></i>
-              <h3><a href="javascript:void(0);">Innovate</a></h3>
-            </div>
-          </div> -->
-         <!--  <div class="col-lg-4 mt-4 mt-lg-0">
-            <div class="icon-box text-center">
-              <i class="icofont-computer"></i>
-              <h3><a href="javascript:void(0);">Create</a></h3>
-            </div>
-          </div> -->
+    <div class="container" style="background:#3084ac;">
+      
+    
+    <center><img src="<?php echo base_url('assets/home/img/offer.png');?>" style="height: 150px;"></center>
+ <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img src="<?php echo base_url('assets/home/img/slide/post1.jpg');?>" class="img-fluid"/>
         </div>
-
+        <div class="swiper-slide">
+          <img src="<?php echo base_url('assets/home/img/slide/post2.jpg');?>" class="img-fluid"/>
+        </div>
+        <div class="swiper-slide">
+          <img src="<?php echo base_url('assets/home/img/slide/post3.jpg');?>" class="img-fluid"/>
+        </div>
       </div>
+      <div class="swiper-pagination"></div>
+    </div>
+     
+     </div>
+     <div class="container">
+       <div class="swiper mySwiper1" style="width: 100%;">
+      <div class="swiper-wrapper">
+        <?php foreach ($creative as $key): ?>
+          <div class="swiper-slide" style=" width: 300px;height: 300px;">
+          <img src="<?php echo base_url($key->image);?>" />
+        </div>
+        <?php endforeach ?>
+        <!-- 
+        <div class="swiper-slide" style=" width: 300px;height: 300px;">
+          <img src="<?php echo base_url('assets/home/img/slide/post2.jpg');?>" />
+        </div>
+        <div class="swiper-slide" style=" width: 300px;height: 300px;">
+          <img src="<?php echo base_url('assets/home/img/slide/post3.jpg');?>" />
+        </div>
+        <div class="swiper-slide" style=" width: 300px;height: 300px;">
+          <img src="<?php echo base_url('assets/home/img/slide/post1.jpg');?>" />
+        </div>
+        <div class="swiper-slide" style=" width: 300px;height: 300px;">
+          <img src="<?php echo base_url('assets/home/img/slide/post2.jpg');?>" />
+        </div>
+        <div class="swiper-slide" style=" width: 300px;height: 300px;">
+          <img src="<?php echo base_url('assets/home/img/slide/post3.jpg');?>" />
+        </div>
+        <div class="swiper-slide" style=" width: 300px;height: 300px;">
+          <img src="<?php echo base_url('assets/home/img/slide/post1.jpg');?>" />
+        </div>
+        <div class="swiper-slide" style=" width: 300px;height: 300px;">
+          <img src="<?php echo base_url('assets/home/img/slide/post2.jpg');?>" />
+        </div>
+        <div class="swiper-slide" style=" width: 300px;height: 300px;">
+          <img src="<?php echo base_url('assets/home/img/slide/post3.jpg');?>" />
+        </div> -->
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+     </div>
     </section><!-- End Featured Section -->
-
-    <!-- ======= About Section ======= -->
-    <section id="about" class="about">
-      <div class="container">
-
-        <div class="row">
-          <div class="col-lg-6">
-            <img src="<?php echo base_url('assets/home/')?>img/about.jpg" class="img-fluid" alt="">
-          </div>
-          <div class="col-lg-6 pt-4 pt-lg-0 content">
-            <h3 style="color:#000;">Welcome to Chatresh Technologies Pvt. Ltd.</h3>
-            <p class="font-italic" style="text-align: justify;">
-             Chatresh Technologies Pvt. Ltd. is a technology consulting, system integration, managed business services, and digital transformation company. Our teams guide our clients throughout the whole digital transformation process and synchronize all stakeholders to bring their expectations to life. We match our tailor-made, coordinated expertise with a vibrant ecosystem of digital innovators to deliver the most sustainable outcomes. We go to great lengths for our customers and accelerate their digital transformation by enabling their Cloud, Mobility, Data Analytics, IoT, System Integration and Security journeys to address the dynamic requirements of a variety of industry verticals, predominantly Government & Public Sector, Large and Medium Businesses and many more.
-            </p>
-            <p>
-            Our vision is to be a global leader in innovation and technology segment and making affordable products and solution for the masses.
-            </p>
-          </div>
+    <!-- Brand Section -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+              <div class="section-title mb">
+          <h2>Our Brands</h2></div>
         </div>
-
+        <div class="row pb-4">
+          <div class="col-md-4">
+            <div class="card m-2" style="border-radius: 0;box-shadow: 0 5px 15px rgba(0, 0, 0,0.6);">
+              <div class="card-header bg-white" style="">
+                <h1><img src="<?php echo base_url('assets/home/')?>img/brand/eschool.png" alt="" style="height: 100px;margin:10px;box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);"></h1>
+              </div>
+              <div class="card-body" style="background: #3084ac;color:#fff;">
+                <p class="card-title">ESCHOOL21 is a comprehensive Ed-Tech solution catering to School Automation, LMS and Hardware Solution.</p>
+                <a href="https://eschool21.com/" style="float: right;height: 30px;width:100px;background:red;line-height: 30px;text-align: center;color:#fff;box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);">Click here</a>
+              </div>
+            </div>
+          </div>
+            <div class="col-md-4">
+            <div class="card m-2" style="border-radius: 0;box-shadow: 0 5px 15px rgba(0, 0, 0,0.6);">
+                <div class="card-header bg-white" style="">
+                <h1><img src="<?php echo base_url('assets/home/')?>img/brand/ctech.png" alt="" style="height: 100px;margin:10px;box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);"></h1>
+              </div>
+              <div class="card-body" style="background: #3084ac;color:#fff;">
+                <p class="card-title">We connect smart devices to work in unison, delivering a truly intelligent smart home experience that makes life more convenient, safe, and enjoyable.</p>
+                  <a href="https://chatreshtech.com/" style="float: right;height: 30px;width:100px;background:red;line-height: 30px;text-align: center;color:#fff;box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);">Click here</a>
+              </div>
+            
+            </div>
+          </div>
+            <div class="col-md-4">
+            <div class="card m-2" style="border-radius: 0;box-shadow: 0 5px 15px rgba(0, 0, 0,0.6);">
+              <div class="card-header bg-white" style="">
+                <h1><img src="<?php echo base_url('assets/home/')?>img/brand/boxotsolution.jpg" alt="" style="height: 100px;margin:10px;box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);"></h1>
+              </div>
+              <div class="card-body" style="background: #3084ac;color:#fff;">
+                <p class="card-title">We strive to
+deliver the integrated software based solutions. Empower and enhance
+the lives of Billions of users through Profound technology solutions.</p>
+  <a href="https://boxoutsolution.com/" style="float: right;height: 30px;width:100px;background:red;line-height: 30px;text-align: center;color:#fff;box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);">Click here</a>
+              </div>
+            </div>
+          </div> 
+        </div>
       </div>
-    </section><!-- End About Section -->
-
-    <!-- ======= Services Section ======= -->
-    <section id="services" class="services">
-      <div class="container">
-
-        <div class="section-title" data-aos="fade-up">
-          <h2>Our Services</h2>
-        </div>
-        <div class="row">
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
-            <div class="icon-box">
-               <img src="<?php echo base_url('assets/home/img/services/sc.png');?>" style="height: 100px;width:100px;">
-              <h4><a href="">Software Consulting</a></h4>
-              <p>We provide complete Software Consulting Solution in your Budget.</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-            <div class="icon-box">
-               <img src="<?php echo base_url('assets/home/img/services/csd.png');?>" style="height: 100px;width:100px;">
-              <h4><a href="">Custom Software Development
-</a></h4>
-              <p>We provide complete Custom Software Development
- Solution in your Budget.</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-            <div class="icon-box">
-           <img src="<?php echo base_url('assets/home/img/services/sdo.png');?>" style="height: 100px;width:100px;">
-              <h4><a href="">Software Development Outsourcing</a></h4>
-              <p>We provide Software Development Outsourcing in your Budget.</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-            <div class="icon-box">
-              <img src="<?php echo base_url('assets/home/img/services/spd.png');?>" style="height: 100px;width:100px;">
-              <h4><a href="">Software Product Development</a></h4>
-              <p>We provide Software Product Development in your Budget.</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-            <div class="icon-box">
-             <img src="<?php echo base_url('assets/home/img/services/tas.png');?>" style="height: 100px;width:100px;">
-              <h4><a href="">Technologies Application services</a></h4>
-              <p>We provide Technologies Application services in your Budget.</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-            <div class="icon-box">
-             <img src="<?php echo base_url('assets/home/img/services/ta.png');?>" style="height: 100px;width:100px;">
-              <h4><a href="">Technology advisory</a></h4>
-              <p>We provide Technology advisory in your Budget.</p>
-            </div>
-          </div>
-           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-            <div class="icon-box">
-               <img src="<?php echo base_url('assets/home/img/services/dea.png');?>" style="height: 100px;width:100px;">
-              <h4><a href="">Digital enterprise application</a></h4>
-              <p>We provide Digital enterprise application in your Budget.</p>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-             <div class="icon-box">
-             <img src="<?php echo base_url('assets/home/img/services/da.png');?>" style="height: 100px;width:100px;">
-              <h4><a href="">Data analytics</a></h4>
-              <p>We provide Data analytics in your Budget.</p>
-            </div>
-          </div>
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
-            <div class="icon-box">
-               <img src="<?php echo base_url('assets/home/img/services/isa.png');?>" style="height: 100px;width:100px;">
-              <h4><a href="">Intelligent SOHO automation</a></h4>
-              <p>We provide Intelligent SOHO automation in your Budget.</p>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Services Section -->
-
-    <!-- ======= Clients Section ======= -->
-    <section id="clients" class="clients">
-      <div class="container">
-
-        <div class="section-title mb">
-          <h2>Our Brands</h2>
-         <!--  <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p> -->
-        <center>  <a href="https://eschool21.com/"><img src="<?php echo base_url('assets/home/')?>img/brand/eschool.png" alt="" style="height: 100px;margin:10px;box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);"></a>
-          <a href="#"><img src="<?php echo base_url('assets/home/')?>img/brand/ctech.png" alt="" style="height: 100px;margin:10px;box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);"></a>
-          <a href="https://boxoutsolution.com/"><img src="<?php echo base_url('assets/home/')?>img/brand/boxotsolution.jpeg" alt="" style="height: 100px;margin:10px;box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);"></a></center>
-          <br>
-        </div>
-       
-        <div class="owl-carousel clientssa-carousel">
-        <img src="<?php echo base_url('assets/home/')?>img/brand/eschool21.png" alt="">
-          <img src="<?php echo base_url('assets/home/')?>img/brand/ctech.png" alt="">
-          <img src="<?php echo base_url('assets/home/')?>img/brand/boxotsolution.jpeg" alt="">
-       <!--    <img src="<?php echo base_url('assets/home/')?>img/clients/client-2.png" alt="">
-          <img src="<?php echo base_url('assets/home/')?>img/clients/client-3.png" alt="">
-          <img src="<?php echo base_url('assets/home/')?>img/clients/client-4.png" alt="">
-          <img src="<?php echo base_url('assets/home/')?>img/clients/client-5.png" alt="">
-          <img src="<?php echo base_url('assets/home/')?>img/clients/client-6.png" alt="">
-          <img src="<?php echo base_url('assets/home/')?>img/clients/client-7.png" alt="">
-          <img src="<?php echo base_url('assets/home/')?>img/clients/client-8.png" alt=""> -->
-        </div>
-
-      </div>
-    </section><!-- End Clients Section -->
+    </div>
 
   </main><!-- End #main -->

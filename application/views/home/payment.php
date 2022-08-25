@@ -25,9 +25,9 @@
             <form action="<?php echo base_url('home/process_payment');?>" method="post" role="form" class="php-email-form">
               <div class="row">
                 <div class="col-md-6 col-12 form-group">
-                  <label>Choose Brand/Company</label>
+                  <label>Choose Product Type</label>
                  <select name="company_id" id="company_id" class="form-control" required>
-                   <option>Select Brand/Company</option>
+                   <option>Select Product Type</option>
                    <?php foreach ($company as $key): ?>
                      <option value="<?php echo $key->id;?>"><?php echo $key->company_name;?></option>
                    <?php endforeach ?>

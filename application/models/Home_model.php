@@ -67,6 +67,45 @@ class Home_model extends CI_Model {
 	{
 		return $this->db->get_where('fa',array('id'=>$id))->num_rows();
 	}
+	//16 May, 2022
+	public function career($id='')
+	{
+		if($id):
+			return $this->db->get_where('career',array('id'=>$id))->result();
+		else:
+			$this->db->order_by('id','desc');
+			return $this->db->get('career')->result();
+		endif;
+	}
+	public function jobExist($id)
+	{
+		return $this->db->get_where('career',array('id'=>$id))->num_rows();
+	}
+	//02 june, 2022
+	public function creative()
+	{
+		$this->db->order_by('id','desc');
+		return $this->db->get('creative')->result();
+	}
+	//22 june, 2022
+	public function loadData($page,$start)
+	{
+		$count=$this->db->get('blog')->num_rows();
+		$this->db->limit($page,$start);
+		$res = $this->db->get('blog')->result();
+		$output='';
+		foreach($res as $key):
+			$output.='<div>';
+			$output.='<h1>'.$key->title.'</h1>';
+			$output.='</div>';
+		endforeach;
+		return $output;
+	}
+	//16 july, 2022
+	public function findIdByUrlSlug($url_slug)
+	{
+		return $this->db->get_where('blog',array('url_slug'=>$url_slug))->row()->id;
+	}
 }
 
 /* End of file Home_model.php */

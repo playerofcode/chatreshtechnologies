@@ -7,7 +7,7 @@
           <li><a href="<?php echo base_url();?>">Home</a></li>
           <li><a href="<?php echo base_url('blog');?>">Blog</a></li>
         </ol>
-        <h2><?php echo $blog[0]->title;?></h2>
+        <h2 style="color:#000!important;"><?php echo $blog[0]->title;?></h2>
 
       </div>
     </section><!-- End Breadcrumbs -->
@@ -33,7 +33,7 @@
 
               <div class="entry-meta">
                 <ul>
-                  <li class="d-flex align-items-center"><i class="icofont-user"></i> <a href="javascript:void(0);">CTECH</a></li>
+                  <li class="d-flex align-items-center"><i class="icofont-user"></i> <a href="javascript:void(0);">Chatresh Technologies</a></li>
                   <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01"><?php echo date('M d, Y',strtotime($blog[0]->created_at));?></time></a></li>
                   <li class="d-flex align-items-center"><i class="icofont-eye-open"></i> <a href="javascript:void(0);"><?php echo $blog[0]->view;?></a></li>
                 </ul>
@@ -43,7 +43,7 @@
                   text-align: justify!important;
                 }
               </style>
-              <div class="entry-content">
+              <div class="entry-content" style="color:#000!important;">
                 <p><?php echo $blog[0]->description;?>
                 </p>
 

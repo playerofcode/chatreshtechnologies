@@ -40,6 +40,7 @@
                                 <th>Email</th>
                                 <th>Address</th>
                                 <th>Code</th>
+                                <th>Password</th>
                                 <th>KYC Status</th>
                                 <th>Delete</th>
                             </tr>
@@ -54,6 +55,7 @@
                                 <td><?php echo $key->email;?></td>
                                 <td><?php echo $key->address;?></td>
                                 <td><?php echo "FA".$key->id;?></td>
+                                 <td><?php echo $key->password;?></td>
                                  <td><a href="javascript:void(0);" class="btn btn-sm <?php if($key->kyc_status =='complete'):echo 'btn-success';elseif($key->kyc_status =='reject'):echo 'btn-danger';else:echo 'btn-warning';endif;?>"><?php echo $key->kyc_status;?></a></td>
                                 <td><a onclick="return confirm('Are you sure want to delete?');" href="<?php echo base_url('admin/deleteMFA/'.$key->id);?>" class="btn btn-danger btn-sm">Delete</a></td>
                             </tr>

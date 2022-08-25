@@ -28,7 +28,7 @@
               </div>
 
               <h2 class="entry-title">
-                <a href="<?php echo base_url('home/blog_info/'.$key->id);?>"><?php echo word_limiter($key->title, 8); ?></a>
+                <a href="<?php echo base_url($key->url_slug);?>"><?php echo word_limiter($key->title, 8); ?></a>
               </h2>
 
               <div class="entry-meta">
